@@ -10,8 +10,8 @@ namespace Hearthstone.Controllers
     [Route("[controller]")]
     [ApiController]
     public class cardsController : ControllerBase
-    { 
-        
+    {
+
         private readonly HearthstoneService _hearthstoneService;
         public cardsController(HearthstoneService hearthstoneService) =>
             _hearthstoneService = hearthstoneService;
@@ -29,8 +29,8 @@ namespace Hearthstone.Controllers
         //
 
         [HttpGet]
-        public async Task<ActionResult<List<DTOCardsNSC>>> GetCards(int setid=0, string? artist=null, int classid=0, int rarityid=0, int page=0)
-        {    
+        public async Task<ActionResult<List<DTOCardsNSC>>> GetCards(int setid = 0, string? artist = null, int classid = 0, int rarityid = 0, int page = 0)
+        {
             //Get all sets, classes and rarities
             var loadedSets = await _hearthstoneService.Sets.Find(_ => true).ToListAsync();
             var loadedClasses = await _hearthstoneService.Classes.Find(_ => true).ToListAsync();
@@ -57,16 +57,22 @@ namespace Hearthstone.Controllers
                 .ToListAsync();
             if (page != 0)
             {
-                var indexTop = page * 100 - 1;
-                var i = indexTop - 99;
+                //Endpoint
+                int indexTop = page * 100 - 1;
+                //Starting point
+                int i = indexTop - 99;
                 var tempList = new List<DTOCardsNSC>();
-                for (i; i < indexTop; i++;)
+                for (i; i < indexTop; i++)
                 {
-                    temcollection[i]
+                    if (collection[i] != null)
+                        tempList.push(collection[i]);
                 }
+                _logger.OutputLine("Returned items from page: " + page.ToString());
+                _logger.OutputLine("GetCards ran with Query: " + Request.QueryString);
+                return tempList;
             }
             _logger.OutputLine("GetCards ran with Query: " + Request.QueryString);
-            return collection; 
+            return collection;
 
         }
 

@@ -21,6 +21,7 @@ namespace Hearthstone.Controllers
         public async Task<ActionResult<List<Rarity>>> GetRarities()
         {
             //throw new NotImplementedException();
+                        _logger.OutputLine("GetRarities ran with Query: " + Request.QueryString);
             return await _hearthstoneService.Rarities.Find(_ => true).ToListAsync();
         }
         #endregion

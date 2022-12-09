@@ -23,6 +23,7 @@ namespace Hearthstone.Controllers
         public async Task<ActionResult<List<Class>>> GetClasses()
         {
             //throw new NotImplementedException();
+                        _logger.OutputLine("GetClasses ran with Query: " + Request.QueryString);
             return await _hearthstoneService.Classes.Find(_ => true).ToListAsync();
         }
         #endregion

@@ -12,6 +12,7 @@ namespace Hearthstone.Controllers
     public class setsController : ControllerBase
     {
         private readonly HearthstoneService _hearthstoneService;
+        private readonly ControllerLogger _logger = new ControllerLogger();
         public setsController(HearthstoneService hearthstoneService) =>
             _hearthstoneService = hearthstoneService;
 
@@ -20,6 +21,7 @@ namespace Hearthstone.Controllers
         [HttpGet("/sets")]
         public async Task<ActionResult<List<Set>>> GetSets()
         {
+            _logger.OutputLine("GetSets ran with Query: " + Request.QueryString);
             return await _hearthstoneService.Sets.Find(_ => true).ToListAsync();
         }
 
