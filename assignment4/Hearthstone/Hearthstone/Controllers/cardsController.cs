@@ -29,21 +29,33 @@ namespace Hearthstone.Controllers
         [HttpGet]
         public async Task<ActionResult<List<DTOCardsNSC>>> GetCards(int setid=0, string? artist=null, int classid=0, int rarityid=0)
         {
+            //Get all sets, classes and rarities
+            var loadedSets = await _hearthstoneService.Sets.Find(_ => true).ToListAsync();
+            var loadedClasses = await _hearthstoneService.Classes.Find(_ => true).ToListAsync();
+            var loadedRarities = await _hearthstoneService.Rarities.Find(_ => true).ToListAsync();
+            //Create filter 
             var filter = _hearthstoneService.CreateCardFilter(setid, artist, classid, rarityid);
             var collection = await _hearthstoneService.Cards.Find(filter)
                 .Project(NSC => new DTOCardsNSC()
                 {
                     Name = NSC.Name,
-                    Set = NSC.cardSetId.ToString(),
-                    Class = NSC.ClassId.ToString()
+                    Set = (loadedSets.Find(s => s.Id == NSC.cardSetId) != null) ? loadedSets.Find(s => s.Id == NSC.cardSetId).Name : "setless",
+                    Class = (loadedClasses.Find(c => c.Id == NSC.ClassId) != null) ? loadedClasses.Find(c => c.Id == NSC.ClassId).Name : "classless",
+                    SpellSchoolId = NSC.SpellSchoolId,
+                    Rarity = (loadedRarities.Find(r => r.Id == NSC.RarityId) != null) ? loadedRarities.Find(r => r.Id == NSC.RarityId).Name : "rarityless",
+                    Health = NSC.Health,
+                    Attack = NSC.Attack,
+                    ManaCost = NSC.ManaCost,
+                    artistName = NSC.artistName,
+                    Text = NSC.Text,
+                    FlavorText = NSC.FlavorText,
+                    Id = NSC.Id
 
                 })
                 .ToListAsync();
                      
             return collection;
 
-
-            throw new NotImplementedException();
         }
 
         [HttpGet("/AllInfo")]
@@ -55,10 +67,7 @@ namespace Hearthstone.Controllers
             return collection;
 
 
-            throw new NotImplementedException();
         }
-
-
         #endregion
 
 
