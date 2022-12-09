@@ -8,10 +8,11 @@ namespace Hearthstone.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int Id { get; set; }
+        public string? _id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
         [JsonPropertyName("collectibleCount")]
-        public int CardCount { get; set; }
+        public int collectibleCount { get; set; }
+        public int Id { get; set; }
     }
 }
