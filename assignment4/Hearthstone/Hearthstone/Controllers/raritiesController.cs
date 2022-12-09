@@ -12,6 +12,7 @@ namespace Hearthstone.Controllers
     public class raritiesController : ControllerBase
     {
         private readonly HearthstoneService _hearthstoneService;
+        private readonly ControllerLogger _logger = new ControllerLogger();
         public raritiesController(HearthstoneService hearthstoneService) =>
             _hearthstoneService = hearthstoneService;
 
@@ -21,7 +22,7 @@ namespace Hearthstone.Controllers
         public async Task<ActionResult<List<Rarity>>> GetRarities()
         {
             //throw new NotImplementedException();
-                        _logger.OutputLine("GetRarities ran with Query: " + Request.QueryString);
+            _logger.OutputLine("GetRarities ran with Query: " + Request.QueryString);
             return await _hearthstoneService.Rarities.Find(_ => true).ToListAsync();
         }
         #endregion

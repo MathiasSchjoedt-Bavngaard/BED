@@ -13,6 +13,7 @@ namespace Hearthstone.Controllers
     public class cardTypesController : ControllerBase
     {
         private readonly HearthstoneService _hearthstoneService;
+        private readonly ControllerLogger _logger = new ControllerLogger();
         public cardTypesController(HearthstoneService hearthstoneService) =>
             _hearthstoneService = hearthstoneService;
 
