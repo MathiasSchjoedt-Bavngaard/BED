@@ -24,3 +24,4 @@ namespace Hearthstone.Models
         public int Id { get; set; }
     }
 }
+

@@ -10,12 +10,14 @@ namespace Hearthstone.Controllers
     [Route("[controller]")]
     [ApiController]
     public class cardsController : ControllerBase
-    {
+    { 
+        
         private readonly HearthstoneService _hearthstoneService;
         public cardsController(HearthstoneService hearthstoneService) =>
             _hearthstoneService = hearthstoneService;
-        
-            
+        private readonly ControllerLogger _logger = new ControllerLogger();
+
+
         #region F1 Cards
         //F1 An endpoint @ GET /cards that returns all available cards
         // F1.1 Shall have a query parameter page that is used for pagination
@@ -27,8 +29,8 @@ namespace Hearthstone.Controllers
         //
 
         [HttpGet]
-        public async Task<ActionResult<List<DTOCardsNSC>>> GetCards(int setid=0, string? artist=null, int classid=0, int rarityid=0)
-        {
+        public async Task<ActionResult<List<DTOCardsNSC>>> GetCards(int setid=0, string? artist=null, int classid=0, int rarityid=0, int page=0)
+        {    
             //Get all sets, classes and rarities
             var loadedSets = await _hearthstoneService.Sets.Find(_ => true).ToListAsync();
             var loadedClasses = await _hearthstoneService.Classes.Find(_ => true).ToListAsync();
@@ -53,8 +55,18 @@ namespace Hearthstone.Controllers
 
                 })
                 .ToListAsync();
-                     
-            return collection;
+            if (page != 0)
+            {
+                var indexTop = page * 100 - 1;
+                var i = indexTop - 99;
+                var tempList = new List<DTOCardsNSC>();
+                for (i; i < indexTop; i++;)
+                {
+                    temcollection[i]
+                }
+            }
+            _logger.OutputLine("GetCards ran with Query: " + Request.QueryString);
+            return collection; 
 
         }
 
