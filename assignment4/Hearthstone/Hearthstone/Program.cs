@@ -1,22 +1,24 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Hearthstone.Services;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Hearthstone.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
+var connectionString = "mongodb://localhost:27017";
+//connectionString = builder.Configuration.GetConnectionString("ConnectionString");
 
 var hearthstoneServiceSettings = new HearthstoneServiceSettings()
 {
     ConnectionString = connectionString,
-    DatabaseName = "HearthstoneDatabase",
+    DatabaseName = "Hearthstone",
 };
 
 
 builder.Services.AddSingleton<HearthstoneServiceSettings>(hearthstoneServiceSettings);
-
+builder.Services.AddSingleton<HearthstoneService>();
 
 builder.Services.AddControllers(options =>
 {
