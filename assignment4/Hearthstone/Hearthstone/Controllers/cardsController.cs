@@ -62,10 +62,10 @@ namespace Hearthstone.Controllers
                 //Starting point
                 int i = indexTop - 99;
                 var tempList = new List<DTOCardsNSC>();
-                for (i; i < indexTop; i++)
+                for (; i < indexTop; i++)
                 {
                     if (collection[i] != null)
-                        tempList.push(collection[i]);
+                        tempList.Add(collection[i]);
                 }
                 _logger.OutputLine("Returned items from page: " + page.ToString());
                 _logger.OutputLine("GetCards ran with Query: " + Request.QueryString);
