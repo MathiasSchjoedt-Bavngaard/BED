@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Text.Json;
 using System.Xml.Linq;
 
 namespace Hearthstone.Services
@@ -30,6 +31,30 @@ namespace Hearthstone.Services
             Classes = database.GetCollection<Class>("Classes");
             Rarities = database.GetCollection<Rarity>("Rarities");
             Sets = database.GetCollection<Set>("Sets");
+            //var FileList 
+
+            //if (client.GetDatabase(settings.DatabaseName).ListCollections().ToList().Count == 0)
+            //{
+
+            //    var collection = database.GetCollection<Card>("cards");
+            //    for
+
+            //    foreach (var path in new[] { "lea.json", "arn.json", "atq.json", "leg.json" })
+            //    {
+            //        using (var file = new StreamReader(path))
+            //        {
+            //            var cards = JsonSerializer.Deserialize<List<Card>>(file.ReadToEnd(), new JsonSerializerOptions
+            //            {
+            //                PropertyNameCaseInsensitive = true
+            //            });
+            //            collection.InsertMany(cards);
+            //        }
+            //    }
+            //}
+        }
+        public void SeedDataBase()
+        {
+            
         }
         public FilterDefinition<Card> CreateCardFilter(int setid, string artist, int classid, int rarityid)
         {

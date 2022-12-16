@@ -62,7 +62,7 @@ namespace Hearthstone.Controllers
                 //Starting point
                 int i = indexTop - 99;
                 var tempList = new List<DTOCardsNSC>();
-                for (; i < indexTop; i++)
+                for (; i <= indexTop; i++)
                 {
                     if (collection[i] != null)
                         tempList.Add(collection[i]);
