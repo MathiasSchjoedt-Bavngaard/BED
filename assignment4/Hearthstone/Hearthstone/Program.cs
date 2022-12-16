@@ -2,6 +2,7 @@
 using Hearthstone.Services;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Hearthstone.Controllers;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,12 +14,12 @@ var connectionString = "mongodb://localhost:27017";
 var hearthstoneServiceSettings = new HearthstoneServiceSettings()
 {
     ConnectionString = connectionString,
-    DatabaseName = "Hearthstone",
+    DatabaseName = "HearthstoneDB"
 };
 
 
 builder.Services.AddSingleton<HearthstoneServiceSettings>(hearthstoneServiceSettings);
-builder.Services.AddSingleton<HearthstoneService>();
+builder.Services.AddSingleton<HearthstoneService>(new HearthstoneService(hearthstoneServiceSettings));
 
 builder.Services.AddControllers(options =>
 {

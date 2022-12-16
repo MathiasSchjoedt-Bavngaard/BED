@@ -26,31 +26,58 @@ namespace Hearthstone.Services
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            Cards = database.GetCollection<Card>("cards");
+            Cards = database.GetCollection<Card>("Cards");
             CardTypes = database.GetCollection<CardType>("CardTypes");
             Classes = database.GetCollection<Class>("Classes");
             Rarities = database.GetCollection<Rarity>("Rarities");
             Sets = database.GetCollection<Set>("Sets");
-            //var FileList 
 
-            //if (client.GetDatabase(settings.DatabaseName).ListCollections().ToList().Count == 0)
-            //{
+            Console.Write(settings.DatabaseName);
 
-            //    var collection = database.GetCollection<Card>("cards");
-            //    for
-
-            //    foreach (var path in new[] { "lea.json", "arn.json", "atq.json", "leg.json" })
-            //    {
-            //        using (var file = new StreamReader(path))
-            //        {
-            //            var cards = JsonSerializer.Deserialize<List<Card>>(file.ReadToEnd(), new JsonSerializerOptions
-            //            {
-            //                PropertyNameCaseInsensitive = true
-            //            });
-            //            collection.InsertMany(cards);
-            //        }
-            //    }
-            //}
+            if (client.GetDatabase(settings.DatabaseName).ListCollections().ToList().Count == 0)
+            {
+                        
+                using (var file = new StreamReader("Cards.Json"))
+                {
+                    var Data = JsonSerializer.Deserialize<List<Card>>(file.ReadToEnd(), new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                    Cards.InsertMany(Data);
+                }
+                using (var file = new StreamReader("Classes.Json"))
+                {
+                    var Data = JsonSerializer.Deserialize<List<Class>>(file.ReadToEnd(), new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                    Classes.InsertMany(Data);
+                }
+                    using (var file = new StreamReader("Rarities.Json"))
+                {
+                    var Data = JsonSerializer.Deserialize<List<Rarity>>(file.ReadToEnd(), new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                    Rarities.InsertMany(Data);
+                }
+                    using (var file = new StreamReader("Sets.Json"))
+                {
+                    var Data = JsonSerializer.Deserialize<List<Set>>(file.ReadToEnd(), new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                    Sets.InsertMany(Data);
+                }
+                    using (var file = new StreamReader("Types.Json"))
+                {
+                    var Data = JsonSerializer.Deserialize<List<CardType>>(file.ReadToEnd(), new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                    CardTypes.InsertMany(Data);
+                }
+            }
         }
         public void SeedDataBase()
         {

@@ -61,6 +61,9 @@ namespace Hearthstone.Controllers
                 int indexTop = page * 100 - 1;
                 //Starting point
                 int i = indexTop - 99;
+                if (collection.Count < indexTop)
+                    indexTop = collection.Count-1;
+                
                 var tempList = new List<DTOCardsNSC>();
                 for (; i <= indexTop; i++)
                 {
