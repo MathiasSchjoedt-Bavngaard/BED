@@ -8,7 +8,8 @@ services:
     ports:
      - 5011:80
     environment:
-        - "Connectionstrings:default=mongodb://root:example@mongo:27017/" 
+     
+      - "Connectionstrings:default=mongodb://root:example@mongo:27017/" 
     # volumes:
     #   - .:/https:ro    
   mongo:
