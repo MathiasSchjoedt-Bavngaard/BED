@@ -2,17 +2,17 @@
 version: '3.9'
 services:
   api:
-    image: ""
+    image: "mathiasschjoedtbavngaard/sw4bed-01-handin-4-hearthstone:API"
     ports:
-     - 5001:80
+     - 5011:80
+    environment:
+        - "HearthstoneDB:ConnectionString=mongodb://root:example@mongo:27017/" 
+        
   mongo:
     image: mongo
     restart: always
     ports: 
       - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
   mongo-express:
     depends_on:
       - mongo
