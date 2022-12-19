@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 var connectionString = "mongodb://localhost:27017";
-//connectionString = builder.Configuration.GetConnectionString("ConnectionString");
+connectionString = builder.Configuration.GetConnectionString("default");
 
 var hearthstoneServiceSettings = new HearthstoneServiceSettings()
 {
