@@ -19,6 +19,7 @@ var hearthstoneServiceSettings = new HearthstoneServiceSettings()
 
 
 builder.Services.AddSingleton<HearthstoneServiceSettings>(hearthstoneServiceSettings);
+Console.WriteLine(hearthstoneServiceSettings.ConnectionString);
 builder.Services.AddSingleton<HearthstoneService>(new HearthstoneService(hearthstoneServiceSettings));
 
 builder.Services.AddControllers(options =>
