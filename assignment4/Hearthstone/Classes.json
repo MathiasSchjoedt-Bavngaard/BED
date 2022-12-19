@@ -1,0 +1,46 @@
+﻿[
+    {
+      "Id": 14,
+      "Name": "Demon Hunter"
+    },
+    {
+      "Id": 2,
+      "Name": "Druid"
+    },
+    {
+      "Id": 3,
+      "Name": "Hunter"
+    },
+    {
+      "Id": 4,
+      "Name": "Mage"
+    },
+    {
+      "Id": 5,
+      "Name": "Paladin"
+    },
+    {
+      "Id": 6,
+      "Name": "Priest"
+    },
+    {
+      "Id": 7,
+      "Name": "Rogue"
+    },
+    {
+      "Id": 8,
+      "Name": "Shaman"
+    },
+    {
+      "Id": 9,
+      "Name": "Warlock"
+    },
+    {
+      "Id": 10,
+      "Name": "Warrior"
+    },
+    {
+      "Id": 12,
+      "Name": "Neutral"
+    }
+  ]

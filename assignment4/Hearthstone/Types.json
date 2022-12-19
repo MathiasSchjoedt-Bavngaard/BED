@@ -1,0 +1,23 @@
+﻿
+[
+    {
+      "Id": 3,
+      "Name": "Hero"
+    },
+    {
+      "Id": 4,
+      "Name": "Minion"
+    },
+    {
+      "Id": 5,
+      "Name": "Spell"
+    },
+    {
+      "Id": 7,
+      "Name": "Weapon"
+    },
+    {
+      "Id": 10,
+      "Name": "HeroPower"
+    }
+]

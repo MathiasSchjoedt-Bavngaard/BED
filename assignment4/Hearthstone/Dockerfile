@@ -9,6 +9,7 @@ RUN dotnet restore
 
 # copy everything else and build app
 COPY Hearthstone/. ./Hearthstone/
+COPY Cards.json /Hearthstone/Cards.json
 WORKDIR /source/Hearthstone
 RUN dotnet publish -c release -o /app
 

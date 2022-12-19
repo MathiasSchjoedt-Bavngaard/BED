@@ -37,7 +37,7 @@ namespace Hearthstone.Services
             if (client.GetDatabase(settings.DatabaseName).ListCollections().ToList().Count == 0)
             {
                         
-                using (var file = new StreamReader("Cards.Json"))
+                using (var file = new StreamReader("Cards.json"))
                 {
                     var Data = JsonSerializer.Deserialize<List<Card>>(file.ReadToEnd(), new JsonSerializerOptions
                     {
@@ -45,7 +45,7 @@ namespace Hearthstone.Services
                     });
                     Cards.InsertMany(Data);
                 }
-                using (var file = new StreamReader("Classes.Json"))
+                using (var file = new StreamReader("Classes.json"))
                 {
                     var Data = JsonSerializer.Deserialize<List<Class>>(file.ReadToEnd(), new JsonSerializerOptions
                     {
@@ -53,7 +53,7 @@ namespace Hearthstone.Services
                     });
                     Classes.InsertMany(Data);
                 }
-                    using (var file = new StreamReader("Rarities.Json"))
+                    using (var file = new StreamReader("Rarities.json"))
                 {
                     var Data = JsonSerializer.Deserialize<List<Rarity>>(file.ReadToEnd(), new JsonSerializerOptions
                     {
@@ -61,7 +61,7 @@ namespace Hearthstone.Services
                     });
                     Rarities.InsertMany(Data);
                 }
-                    using (var file = new StreamReader("Sets.Json"))
+                    using (var file = new StreamReader("Sets.json"))
                 {
                     var Data = JsonSerializer.Deserialize<List<Set>>(file.ReadToEnd(), new JsonSerializerOptions
                     {
@@ -69,7 +69,7 @@ namespace Hearthstone.Services
                     });
                     Sets.InsertMany(Data);
                 }
-                    using (var file = new StreamReader("Types.Json"))
+                    using (var file = new StreamReader("Types.json"))
                 {
                     var Data = JsonSerializer.Deserialize<List<CardType>>(file.ReadToEnd(), new JsonSerializerOptions
                     {
